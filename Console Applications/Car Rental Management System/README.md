@@ -7,8 +7,8 @@ This application simulates the process of a new customer looking to rent a vehic
 <img width="867" height="489" alt="Screenshot 2025-07-28 150803" src="https://github.com/user-attachments/assets/defda6c3-1044-4f4b-92c8-7eb4c656bbac" />
 
 Features:
-- ** User Input / Output**
-- ** Multi Delegate Function **
-- ** Dictionary and looping **
-- ** OOP **
+- **User Input / Output**
+- **Multi Delegate Function**
+- **Dictionary and looping**
+- **OOP**
 -----------------------------------------------------------------------------------------------------------------

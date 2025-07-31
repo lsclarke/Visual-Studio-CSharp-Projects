@@ -33,6 +33,7 @@ namespace Car_Rental_Management_System
             Console.Clear();
             _InventoryData.Invoke(Vehicles, _Inputs);
 
+            Console.ReadKey();
         }
     }
 }

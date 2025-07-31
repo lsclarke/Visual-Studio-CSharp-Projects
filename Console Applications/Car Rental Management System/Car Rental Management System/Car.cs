@@ -1,24 +1,25 @@
 ﻿using System;
 using System.Xml.Linq;
 
-public class Car : Vehicle
+public class Car : IVehicle
 {
     /// <summary>
     /// The Car class is responsible for creating all Car withing the system. By implementing the Vehicle interface
     /// this allows for the car to implement their own characteristics of the vehicle in a much more affective way
     /// </summary>
 
-    public enum Type { SUV = 1, Sedan, Truck}
-    public Type type;
-    private static int num = 1;
+    private enum CarType { SUV = 1, Sedan, Truck}
+    private static int _num = 1;
 	public Car()
 	{
 	}
     
     //Car Object
-    public Car(Type clasification, string manufacturer, string name, long year, int MPG, long millage, long VIN, double cost)
+    public Car(int clasification, string manufacturer, string name, long year, int MPG, long millage, long VIN, double cost)
     {
-        type = clasification;
+        type = (CarType)clasification;
+        ShowCarType();
+
         Make = manufacturer;
         Model = name;
         Year = year;
@@ -29,6 +30,27 @@ public class Car : Vehicle
 
     }
 
+    private CarType type { set; get; }
+
+    public string result { get; set; }
+
+
+    public string ShowCarType()
+    {
+        if(this.type == (CarType)1)
+        {
+            result = "SUV";
+        }
+        else if (this.type == (CarType)2)
+        {
+            result = "Sedan";
+        }
+        else if (this.type == (CarType)3)
+        {
+            result = "Truck";
+        }
+        return result;
+    }
     public string Make { set; get; }
 
     public string Model { set; get; }

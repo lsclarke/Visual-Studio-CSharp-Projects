@@ -10,8 +10,8 @@ public class Inventory
     /// this allows the user to see the data for each vehicle, the car number, millage, VIN, etc. I placed them in a dictonary to better structure and organize the data for when needing to be retrieved
     /// or called on for manipulation.
     /// </summary>
-    private static int num = 0;
-    private static int num2 = 0;
+    private static int _num = 0;
+    private static int _num2 = 0;
 
     public struct InventoryInputs()
     {
@@ -30,21 +30,21 @@ public class Inventory
         //Inventory Data for the Rental Car System
 
         //SUVs
-        Car SUV1 = new Car(Car.Type.SUV, "Honda", "Pilot", 2006, 128, 40670, 348492525892, 105.00);
-        Car SUV2 = new Car(Car.Type.SUV, "Chevrolet", "Suburban LT", 2025, 103, 35679, 456637563544, 124.00);
-        Car SUV3 = new Car(Car.Type.SUV, "Toyota", "RAV4 XLE 4D Sport Utility", 2025, 133, 65787, 3272334346734, 118.00);
-        Car SUV4 = new Car(Car.Type.SUV, "Mazda", "CX-50", 2025, 130, 47766, 12325356465, 145.00);
-        Car SUV5 = new Car(Car.Type.SUV, "Kia", "Sportage\r\nEX", 2025, 142, 23000, 7864756832334, 156.00);
+        Car SUV1 = new Car(1, "Honda", "Pilot", 2006, 128, 40670, 348492525892, 105.00);
+        Car SUV2 = new Car(1, "Chevrolet", "Suburban LT", 2025, 103, 35679, 456637563544, 124.00);
+        Car SUV3 = new Car(1, "Toyota", "RAV4 XLE 4D Sport Utility", 2025, 133, 65787, 3272334346734, 118.00);
+        Car SUV4 = new Car(1, "Mazda", "CX-50", 2025, 130, 47766, 12325356465, 145.00);
+        Car SUV5 = new Car(1, "Kia", "Sportage\r\nEX", 2025, 142, 23000, 7864756832334, 156.00);
 
         //Sedans
-        Car Sedan1 = new Car(Car.Type.Sedan, "Subaru ", "WRX", 2025, 131, 41445, 7563234522345, 175.00);
-        Car Sedan2 = new Car(Car.Type.Sedan, "Hyundai", "Sonata", 2024, 172, 35112, 9745245234451, 128.00);
-        Car Sedan3 = new Car(Car.Type.Sedan, "Nissan", "Versa", 2024, 121, 61273, 3272333414346734, 182.00);
+        Car Sedan1 = new Car(2, "Subaru ", "WRX", 2025, 131, 41445, 7563234522345, 175.00);
+        Car Sedan2 = new Car(2, "Hyundai", "Sonata", 2024, 172, 35112, 9745245234451, 128.00);
+        Car Sedan3 = new Car(2, "Nissan", "Versa", 2024, 121, 61273, 3272333414346734, 182.00);
 
 
         //Trucks
-        Car Truck1 = new Car(Car.Type.Truck, "Ford", "Maverick", 2024, 116, 74866, 75733436425138, 165.00);
-        Car Truck2 = new Car(Car.Type.Truck, "RAM", "1500", 2025, 175, 65877, 25363656343576, 163.00);
+        Car Truck1 = new Car(3, "Ford", "Maverick", 2024, 116, 74866, 75733436425138, 165.00);
+        Car Truck2 = new Car(3, "RAM", "1500", 2025, 175, 65877, 25363656343576, 163.00);
 
         //SUVs
         dictionary.Add(1, SUV1);
@@ -76,10 +76,10 @@ public class Inventory
         {
             foreach (var item in dictionary)
             {
-                num++;
-                Console.WriteLine($"----------Car No.{num} Details----------");
+                _num++;
+                Console.WriteLine($"----------Car No.{_num} Details----------");
                 Console.WriteLine("----------------------------------");
-                Console.WriteLine($"Type:: {item.Value.type}, Make:: {item.Value.Make}, Model:: {item.Value.Model}");
+                Console.WriteLine($"Type:: {item.Value.result}, Make:: {item.Value.Make}, Model:: {item.Value.Model}");
                 Console.WriteLine($"Year:: {item.Value.Year}, Miles Per Gallon:: {item.Value.Miles_Per_Gallon}, Millage:: {item.Value.Millage}");
                 Console.WriteLine($"Vehicle Identification Number:: {item.Value.Vehicle_Identification_Number}");
                 Console.WriteLine($"Price:: ${item.Value.Price}/Day");
@@ -90,13 +90,13 @@ public class Inventory
         {
             foreach (var item in dictionary)
             {
-                num2++;
-                if (num2 == inventoryinputs.CarNumber)
+                _num2++;
+                if (_num2 == inventoryinputs.CarNumber)
                 {
                     Console.WriteLine($"----THANK YOU FOR YOUR SELECTION----\n");
-                    Console.WriteLine($"----------Car No.{num2} Details----------");
+                    Console.WriteLine($"----------Car No.{_num2} Details----------");
                     Console.WriteLine("----------------------------------");
-                    Console.WriteLine($"Type:: {item.Value.type}, Make:: {item.Value.Make}, Model:: {item.Value.Model}");
+                    Console.WriteLine($"Type:: {item.Value.result}, Make:: {item.Value.Make}, Model:: {item.Value.Model}");
                     Console.WriteLine($"Year:: {item.Value.Year}, Miles Per Gallon:: {item.Value.Miles_Per_Gallon}, Millage:: {item.Value.Millage}");
                     Console.WriteLine($"Vehicle Identification Number:: {item.Value.Vehicle_Identification_Number}");
                     Console.WriteLine($"Price:: ${item.Value.Price}/Day");

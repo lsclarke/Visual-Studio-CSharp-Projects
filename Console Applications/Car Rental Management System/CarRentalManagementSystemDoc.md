@@ -7,10 +7,3 @@ The System has prewritten data stored in a inventory that the system runs throug
 ![Car Management System Demo GIF](https://github.com/user-attachments/assets/37189540-35d9-4bc6-ae63-19c67fc96f21)
 <img width="867" height="489" alt="Screenshot 2025-07-28 150803" src="https://github.com/user-attachments/assets/defda6c3-1044-4f4b-92c8-7eb4c656bbac" />
 
-Features:
-- **User Input / Output**
-- **Delegate Function**
-- **Data Transfer**
-- **Dictionary and looping**
-- **OOP**
------------------------------------------------------------------------------------------------------------------

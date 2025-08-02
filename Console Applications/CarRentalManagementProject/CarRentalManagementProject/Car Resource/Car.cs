@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static CarRentalManagementProject.Product.Car.Exterior;
+using static CarRentalManagementProject.Product.Car.Interior;
 using static CarRentalManagementProject.Program;
 
 namespace CarRentalManagementProject.Product
@@ -52,8 +53,6 @@ namespace CarRentalManagementProject.Product
 
 
             public int numberOfSeats = seatCount;
-
-
 
             //It will select the seat material based on the number input
             public string getSeatMaterial(string result)
@@ -119,25 +118,27 @@ namespace CarRentalManagementProject.Product
             /// <summary>
             /// CarBodyMaterials and the Colors enum stores all the materials and colors for the car's exterior body that can then be accessed later in the sub class
             /// </summary>
-            public enum CarBodyMaterials { Steel, Titanium, Aluminum };
+            public enum CarBodyMaterials { Steel = 1, Titanium, Aluminum };
             private static CarBodyMaterials _bodyMaterials;
-            public enum CarColors { red, blue, green, yellow, orange, silver, black, brown, white, grey }
+            public enum CarColors { red = 1, blue, green, yellow, orange, silver, black, brown, white, grey = 10 }
             private static CarColors _carColors;
 
-            private static CarBodyMaterials Get_Materials() => _bodyMaterials;
 
+            public string carBodyMaterialText = "";
+            public string carColorText = "";
+            public string carWheelText = "";
+            private static CarBodyMaterials Get_Materials() => _bodyMaterials;
             private static CarColors Get_colors() => _carColors;
 
             //It will select the seat material based on the number input
-            public string setCarMaterial(int num)
+            public string getCarMaterial(string result)
             {
-                string result = "";
+                result = "";
                 int index = 0;
-                num = carMaterialNum;
-                while (num > -1)
+                while (index != 3)
                 {
                     index++;
-                    if (num == index)
+                    if (carMaterialNum == index)
                     {
                         _bodyMaterials = (CarBodyMaterials)index;
                         result = _bodyMaterials.ToString();
@@ -147,15 +148,14 @@ namespace CarRentalManagementProject.Product
             }
 
             //It will select the seat color based on the number input
-            public string setCarColor(int num)
+            public string getCarColor(string result)
             {
-                string result = "";
+                result = "";
                 int index = 0;
-                num = carColorNum;
-                while (num > -1)
+                while (index != 10)
                 {
                     index++;
-                    if(num == index)
+                    if (carColorNum == index)
                     {
                         _carColors = (CarColors)index;
                         result = _carColors.ToString();
@@ -166,54 +166,54 @@ namespace CarRentalManagementProject.Product
 
             #endregion
 
-            public string checkWheelQuality(int gradeNum) 
-            {
-                string result = "";
-                wheelGradeNum = gradeNum;
+            /// <summary>
+            /// checkWheelQuality is responsible for returning the grade level of the wheels. This is a repesentation of their current quality status since 
+            /// past travel will have some wear and tear and the tires  
+            /// </summary>
 
-                if (gradeNum >= 90)
+            public string checkWheelQuality(string result)
+            {
+                result = "";
+
+                if (wheelGradeNum >= 90)
                 {
                     result = "A";
-                } else if ( 90 > gradeNum  && gradeNum >= 80) {
+                } else if (90 > wheelGradeNum && wheelGradeNum >= 80) {
                     result = "B";
-                } else if (80 > gradeNum && gradeNum >= 70) {
+                } else if (80 > wheelGradeNum && wheelGradeNum >= 70) {
                     result = "C";
-                } else if (70 > gradeNum && gradeNum >= 60) {
+                } else if (70 > wheelGradeNum && wheelGradeNum >= 60) {
                     result = "C";
-                } else if (60 > gradeNum && gradeNum >= 50) {
+                } else if (60 > wheelGradeNum && wheelGradeNum >= 50) {
                     result = "D";
-                } else if (50 > gradeNum) {
+                } else if (50 > wheelGradeNum) {
                     result = "E";
                 }
 
                 return result;
             }
-            public bool hasDashCamera(bool hasCam)
+
+            public bool hasDashCamera()
             {
-                hasCam = hasDashCam;
-                return hasCam;
+                return hasDashCam;
             } 
 
-            public bool hasBumperCamera(bool hasCam)
+            public bool hasBumperCamera()
             {
-                hasCam = hasBumperCam;
-                return hasCam;
+                return hasBumperCam;
             }
-            public bool hasSideWindowCamera(bool hasCam)
+            public bool hasSideWindowCamera()
             {
-                hasCam = hasSideCam;
-                return hasCam;
+                return hasSideCam;
             }
 
-            public bool hasSpoilerOnCar(bool check)
+            public bool hasSpoilerOnCar()
             {
-                check = hasSpoiler;
-                return check;
+                return hasSpoiler;
             }
-            public bool hasTintedWindows(bool check)
+            public bool hasTintedWindows()
             {
-                check = hasTinted;
-                return check;
+                return hasTinted;
             }
         }
     }

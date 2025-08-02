@@ -23,6 +23,13 @@ namespace CarRentalManagementProject.Rental_Inventory
             _content = content;
         }
 
+        public void Display(List<T> value)
+        {
+            foreach (var item in value)
+            {
+                Console.WriteLine(value);
+            }
+        }
 
         public void Display(List<SUV> value)
         {

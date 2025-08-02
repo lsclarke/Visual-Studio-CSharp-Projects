@@ -105,6 +105,7 @@ namespace CarRentalManagementProject.Product
             // Display all advanced car details about specific SUV object
 
             var interior = accessInterior(_interiorNumSelection);
+            var exterior = accessExterior(_exteriorNumSelection);
 
             Console.WriteLine($"----------Car No.{getId} Details----------");
             Console.WriteLine($"Type:: SUV, Make:: {Make}, Model:: {Model}");
@@ -115,10 +116,10 @@ namespace CarRentalManagementProject.Product
             Console.WriteLine($"Seats:: {interior.numberOfSeats}, Seat Material:: {interior.getSeatMaterial(interior.seatMaterialText)}, Seat Color:: {interior.getSeatColor(interior.seatColorText)}");
             Console.WriteLine($"Seat Warmers:: {interior.hasSeatWarmers().ToString()}, GPS Navigation System:: {interior.hasGPSNavigation().ToString()}, Auxillary Port:: {interior.hasAuxPort().ToString()}\n");
 
-            //Console.WriteLine($"  ** Exterior Features  **");
-            //Console.WriteLine($"Seats:: SUV, Seat Material:: {Make}, Seat Color:: {Model}");
-            //Console.WriteLine($"Seat Warmers:: {Year}, GPS Navigation System:: {MilesPerGallon}, Auzillary Port:: {Millage}");
-            //Console.WriteLine($"Vehicle Identification Number:: {VehicleIdentificationNumber}");
+            Console.WriteLine($"  ** Exterior Features  **");
+            Console.WriteLine($"Car Material:: {exterior.getCarMaterial(exterior.carBodyMaterialText)}, Car Color:: {exterior.getCarColor(exterior.carColorText)}, Wheel Grade:: {exterior.checkWheelQuality(exterior.carWheelText)}");
+            Console.WriteLine($"Dash Camera:: {exterior.hasDashCamera().ToString()}, Bumper Camera:: {exterior.hasBumperCamera().ToString()}, Side Cameras:: {exterior.hasSideWindowCamera().ToString()}");
+            Console.WriteLine($"Spoiler:: {exterior.hasSpoilerOnCar().ToString()}, Tinted Windows:: {exterior.hasTintedWindows().ToString()}\n");
         }
 
     }

@@ -18,12 +18,12 @@ namespace CarRentalManagementProject.Product
         /// </summary>
         public Car()
         {
-            _id = nextId++;
+           
         }
 
         public Car(Interior i, Exterior e)
         {
-
+            _id = nextId++;
         }
 
         /// <summary>
@@ -38,106 +38,72 @@ namespace CarRentalManagementProject.Product
             /// TextureMaterials and the Colors enum stores all the textures and colors for the car seat that can then be accessed later in the sub class
             /// </summary>
  
-            public enum SeatTextureMaterials { Leather, Vinyl, Faux_Leather, Polyester, Alcantara_Ultrasuede };
+            public enum SeatTextureMaterials { Leather = 1, Vinyl, Faux_Leather, Polyester, Alcantara_Ultrasuede };
             private static SeatTextureMaterials _seatMaterials;
-            public enum SeatColors { red, blue, green, black, brown, white }
+            public enum SeatColors { red = 1, blue, green, black, brown, white }
             private static SeatColors _seatColors;
 
-            public string seatColorText = _seatColors.ToString();
-            public string seatMaterialText = _seatMaterials.ToString();
-
+            public string seatColorText = "";
+            public string seatMaterialText = "";
             private static SeatTextureMaterials Get_Materials() => _seatMaterials;
             private static SeatColors Get_colors() => _seatColors;
 
             #endregion
 
 
-            public int setSeatCount(int num)
-            {
-                seatCount = num;
-                return seatCount;
-            }
+            public int numberOfSeats = seatCount;
+
+
 
             //It will select the seat material based on the number input
-            public int setSeatMaterial()
+            public string getSeatMaterial(string result)
             {
-                switch (seatMaterialNum)
+                result = "";
+                int index = 0;
+                while (index < 5)
                 {
-                    case 0:
-                        _seatMaterials = SeatTextureMaterials.Leather;
-                        seatMaterialText = _seatMaterials.ToString();
-                        break;
-                    case 1:
-                        _seatMaterials = SeatTextureMaterials.Vinyl;
-                        seatMaterialText = _seatMaterials.ToString();
-                        break;
-                    case 2:
-                        _seatMaterials = SeatTextureMaterials.Faux_Leather;
-                        seatMaterialText = _seatMaterials.ToString();
-                        break;
-                    case 3:
-                        _seatMaterials = SeatTextureMaterials.Polyester;
-                        seatMaterialText = _seatMaterials.ToString();
-                        break;
-                    case 4:
-                        _seatMaterials = SeatTextureMaterials.Alcantara_Ultrasuede;
-                        seatMaterialText = _seatMaterials.ToString();
-                        break;
+                    index++;
+                    if (seatMaterialNum == index)
+                    {
+                        _seatMaterials = (SeatTextureMaterials)index;
+                        result = _seatMaterials.ToString();
+                    }
                 }
-
-                return seatMaterialNum;
+                return result;
             }
 
             //It will select the seat color based on the number input
-            public int setSeatColor(int num)
+            public string getSeatColor(string result)
             {
-                seatColorNum = num;
-                switch (num) {
-                    case 0:
-                        _seatColors = SeatColors.red;
-                        seatColorText = _seatColors.ToString();
-                        break;
-                    case 1:
-                        _seatColors = SeatColors.blue;
-                        seatColorText = _seatColors.ToString();
-                        break;
-                    case 2:
-                        _seatColors = SeatColors.green;
-                        seatColorText = _seatColors.ToString();
-                        break;
-                    case 3:
-                        _seatColors = SeatColors.black;
-                        seatColorText = _seatColors.ToString();
-                        break;
-                    case 4:
-                        _seatColors = SeatColors.brown;
-                        seatColorText = _seatColors.ToString();
-                        break;
-                    case 5:
-                        _seatColors = SeatColors.white;
-                        seatColorText = _seatColors.ToString();
-                        break;
+                result = "";
+                int index = 0;
+                while (index < 4)
+                {
+                    index++;
+                    if (seatColorNum == index)
+                    {
+                        _seatColors = (SeatColors)index;
+                        result = _seatColors.ToString();
+                    }
                 }
-
-                return num;
+                return result;
             }
 
-            public bool hasSeatWarmers(bool hasWarmers)
+            
+
+            public bool hasSeatWarmers()
             {
-                hasWarmers = doeshasSeatWarmers;
-                return hasWarmers;
+                return doeshasSeatWarmers;
             }
 
-            public bool hasGPSNavigation(bool hasGPS)
+            public bool hasGPSNavigation()
             {
-                hasGPS = hasNav;
-                return hasGPS;
+                return hasNav;
             }
 
-            public bool hasAuxPort(bool hasPort)
+            public bool hasAuxPort()
             {
-                hasPort = hasAux;
-                return hasPort;
+                return hasAux;
             }
 
         }

@@ -12,20 +12,19 @@ namespace CarRentalManagementProject.Product
         /// <summary>
         /// SUV contructors that will create a brand new SUV object to be added to the inventory of the rental car system
         /// </summary>
-
-        Interior carInterior;
-        Exterior carExterior;
-
-        public SUV() { }
-
-        public SUV(string make, string model, long year, int mpg, long millage, long vin, double price, 
-            int seatCount, int seatMaterialNum, int seatColor, bool hasWarmers, bool hasNav, bool hasAux, 
-            int carMaterialNum, int carColorNum, int wheelGradeNum, bool hasDashCam, bool hasBumperCam, bool hasSideCam, bool hasSpoiler, bool hasTinted)
+        private static int _interiorNumSelection;
+        private static int _exteriorNumSelection;
+        public SUV() 
         {
-            carInterior = new Interior(seatCount, seatMaterialNum, seatColor, hasWarmers, hasNav, hasAux);
-            carExterior = new Exterior(carMaterialNum, carColorNum, wheelGradeNum, hasDashCam, hasBumperCam, hasSideCam, hasSpoiler, hasTinted);
 
-            var newCar = new Car(carInterior, carExterior);
+        }
+
+        public SUV(string make, string model, long year, int mpg, long millage, long vin, double price, int interiorNum, int extriorNum)
+        {
+            _interiorNumSelection = interiorNum; 
+            _exteriorNumSelection = extriorNum;
+
+            var newCar = new Car(accessInterior(interiorNum), accessExterior(extriorNum));
 
             ///Below are all the vehicle identification details for the car the customer!
             Make = make;
@@ -36,6 +35,49 @@ namespace CarRentalManagementProject.Product
             VehicleIdentificationNumber = vin;
             Price = price;
 
+        }
+
+        public Interior accessInterior(int interiorNum)
+        {
+            //default initialized value
+            var carInterior = new Interior(0,0,0,false,false,false);
+            //Different Interior Car features
+            switch (interiorNum)
+            {
+                case 0:
+                    carInterior = new Interior(8, 1, 4, true, true, true);
+                    break;
+                case 1:
+                    carInterior = new Interior(6, 3, 2, false, true, true);
+                    break;
+                case 2:
+                    carInterior = new Interior(8, 5, 3, true, true, false);
+                    break;
+            }
+                return carInterior;
+        }
+
+        public Exterior accessExterior(int exteriorNum)
+        {
+            //default initialized value
+            var carExterior = new Exterior(0,0,0, false, false, false, false, false);
+            //Different Exterior Car features
+            switch (exteriorNum)
+            {
+                case 0:
+                    carExterior = new Exterior(1, 4, 95, true, false, false, true, true);
+                    break;
+                case 1:
+                    carExterior = new Exterior(2, 6, 81, false, true, false, false, true);
+                    break;
+                case 2:
+                    carExterior = new Exterior(2, 3, 76, true, false, true, true, false);
+                    break;
+                case 3:
+                    carExterior = new Exterior(3, 4, 74, true, true, true, false, true);
+                    break;
+            }
+            return carExterior;
         }
 
         /// <summary>
@@ -61,12 +103,22 @@ namespace CarRentalManagementProject.Product
         public void Display()
         {
             // Display all advanced car details about specific SUV object
+
+            var interior = accessInterior(_interiorNumSelection);
+
             Console.WriteLine($"----------Car No.{getId} Details----------");
-            Console.WriteLine("----------------------------------");
             Console.WriteLine($"Type:: SUV, Make:: {Make}, Model:: {Model}");
             Console.WriteLine($"Year:: {Year}, Miles Per Gallon:: {MilesPerGallon}, Millage:: {Millage}");
-            Console.WriteLine($"Vehicle Identification Number:: {VehicleIdentificationNumber}");
+            Console.WriteLine($"Vehicle Identification Number:: {VehicleIdentificationNumber}\n");
 
+            Console.WriteLine($"  ** Interior Features  **");
+            Console.WriteLine($"Seats:: {interior.numberOfSeats}, Seat Material:: {interior.getSeatMaterial(interior.seatMaterialText)}, Seat Color:: {interior.getSeatColor(interior.seatColorText)}");
+            Console.WriteLine($"Seat Warmers:: {interior.hasSeatWarmers().ToString()}, GPS Navigation System:: {interior.hasGPSNavigation().ToString()}, Auxillary Port:: {interior.hasAuxPort().ToString()}\n");
+
+            //Console.WriteLine($"  ** Exterior Features  **");
+            //Console.WriteLine($"Seats:: SUV, Seat Material:: {Make}, Seat Color:: {Model}");
+            //Console.WriteLine($"Seat Warmers:: {Year}, GPS Navigation System:: {MilesPerGallon}, Auzillary Port:: {Millage}");
+            //Console.WriteLine($"Vehicle Identification Number:: {VehicleIdentificationNumber}");
         }
 
     }

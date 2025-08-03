@@ -1,14 +1,14 @@
-﻿using System;
+﻿using CarRentalManagementProject.Product;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static CarRentalManagementProject.Product.Car;
-using static CarRentalManagementProject.Product.Car.Interior;
 
-namespace CarRentalManagementProject.Product
+namespace CarRentalManagementProject.Car_Resource
 {
-    internal class SUV : Car, IVehicle
+    internal class Truck
     {
         /// <summary>
         /// SUV contructors that will create a brand new SUV object to be added to the inventory of the rental car system
@@ -19,14 +19,14 @@ namespace CarRentalManagementProject.Product
         public static int id = 0;
 
         public static int getCarID() => id;
-        public SUV() 
+        public Truck()
         {
 
         }
 
-        public SUV(string make, string model, long year, int mpg, long millage, long vin, double price, int interiorNum, int extriorNum)
+        public Truck(string make, string model, long year, int mpg, long millage, long vin, double price, int interiorNum, int extriorNum)
         {
-            _interiorNumSelection = interiorNum; 
+            _interiorNumSelection = interiorNum;
             _exteriorNumSelection = extriorNum;
             id++;
             var interior = accessInterior(interiorNum);
@@ -50,7 +50,7 @@ namespace CarRentalManagementProject.Product
         public Interior accessInterior(int interiorNum)
         {
             //default initialized value
-            var carInterior = new Interior(0,0,0,false,false,false);
+            var carInterior = new Interior(0, 0, 0, false, false, false);
             //Different Interior Car features
             switch (interiorNum)
             {
@@ -64,13 +64,13 @@ namespace CarRentalManagementProject.Product
                     carInterior = new Interior(8, 5, 3, true, true, false);
                     break;
             }
-                return carInterior;
+            return carInterior;
         }
 
         public Exterior accessExterior(int exteriorNum)
         {
             //default initialized value
-            var carExterior = new Exterior(0,0,0, false, false, false, false, false);
+            var carExterior = new Exterior(0, 0, 0, false, false, false, false, false);
             //Different Exterior Car features
             switch (exteriorNum)
             {
@@ -93,7 +93,7 @@ namespace CarRentalManagementProject.Product
         /// <summary>
         /// Identification details from the IVehicle interface these functions will store all the important car id details on the paper work and reciept
         /// </summary>
-        public string Make { get;}
+        public string Make { get; }
 
         public int MilesPerGallon { get; }
 
@@ -142,6 +142,7 @@ namespace CarRentalManagementProject.Product
             if (exterior.hasTintedWindows())
                 Total += 20.15;
 
+            //Display fees if they are applied to this suv instances
             //if (interior.hasSeatWarmers())
             //    Console.WriteLine($"Seat Warmers:: {interior.hasSeatWarmers().ToString()} +${extraFee}");
             //if (interior.hasGPSNavigation())

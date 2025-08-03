@@ -1,8 +1,10 @@
-﻿using CarRentalManagementProject.Product;
+﻿using CarRentalManagementProject.Car_Resource;
+using CarRentalManagementProject.Product;
 using CarRentalManagementProject.Rental_Inventory;
 using System;
 using System.Reflection;
 using static CarRentalManagementProject.Product.Car.Interior;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace CarRentalManagementProject
 {
@@ -11,25 +13,69 @@ namespace CarRentalManagementProject
         
         static void Main(string[] args)
         {
-            //SUVs
-            List<SUV> suvList = new List<SUV>();
-            SUV car1 = new SUV("Honda", "Pilot", 2006, 128, 40670, 348492525892, 105.00,1,0);
-            SUV car2 = new SUV("Chevrolet", "Suburban LT", 2025, 103, 35679, 456637563544, 124.00,2,2);
-            SUV car3 = new SUV("Toyota", "RAV4 XLE 4D Sport Utility", 2025, 133, 65787, 3272334346734, 118.00,2,0);
-            SUV car4 = new SUV("Mazda", "CX-50", 2025, 130, 47766, 12325356465, 145.00,3,2);
-            SUV car5 = new SUV("Kia", "Sportage EX", 2025, 142, 23000, 7864756832334, 156.00,3,4);
+            //Car Dictionaries
+            var suvDictionary = new Dictionary<int, SUV>();
+            var sedanDictionary = new Dictionary<int, Sedan>();
+            var truckDictionary = new Dictionary<int, Truck>();
 
-            suvList.Add(car1);
-            suvList.Add(car2);
-            suvList.Add(car3);
-            suvList.Add(car4);
-            suvList.Add(car5);
-
-            var suvInventory = new Inventory<SUV>();
-
-            suvInventory.Display(suvList);
+            //Car Inventory instances
+            var suvInventory = new Inventory<Dictionary<int, SUV>>();
+            var sedanInventory = new Inventory<Dictionary<int, Sedan>>(); 
+            var truckInventory = new Inventory<Dictionary<int, Truck>>();
 
 
+            // Car Rental System Prompts Below//
+            //Prompt 1
+            Console.WriteLine("Car Rental Management System\n");
+
+            Console.Write("Please enter the number of days you wish to rent one of our vehicles: ");
+            int DaysNumber = int.Parse(Console.ReadLine());
+
+            Console.Write("\nPlease enter the car tpye you wish to rent \n [SUV, Sedan, Truck] \nType the name of one of the options provide: ");
+            string typeSelectionInput = Console.ReadLine();
+
+            Console.Clear();
+
+            //Checks if string equals one of the selections
+            if (typeSelectionInput.Equals("SUV", StringComparison.OrdinalIgnoreCase))
+                suvInventory.GetAccessAll_SUVData(suvDictionary);
+
+            if (typeSelectionInput.Equals("Sedan", StringComparison.OrdinalIgnoreCase))
+                sedanInventory.GetAccessAll_SedanData(sedanDictionary);
+
+            if (typeSelectionInput.Equals("Truck", StringComparison.OrdinalIgnoreCase))
+                sedanInventory.GetAccessAll_TruckData(truckDictionary);
+
+            //Car Id selection prompt
+            Console.Write("\nEnter the Car ID number you wish to rent for this period: ");
+            int idSelection = int.Parse(Console.ReadLine());
+
+            if (typeSelectionInput.Equals("SUV", StringComparison.OrdinalIgnoreCase))
+                suvInventory.GetAccessSingle_SUVData(suvInventory.GetAccessAll_SUVData(suvDictionary), idSelection, DaysNumber);
+
+            if (typeSelectionInput.Equals("Sedan", StringComparison.OrdinalIgnoreCase))
+                sedanInventory.GetAccessSingle_SedanData(sedanInventory.GetAccessAll_SedanData(sedanDictionary), idSelection, DaysNumber);
+
+            if (typeSelectionInput.Equals("Truck", StringComparison.OrdinalIgnoreCase))
+                truckInventory.GetAccessSingle_TruckData(truckInventory.GetAccessAll_TruckData(truckDictionary), idSelection, DaysNumber);
+
+
+            Console.Write("\nDo you accept this purchase? (Y / N) ");
+            char characterSelection = char.Parse(Console.ReadLine());
+
+            if (characterSelection == 'Y' || characterSelection == 'y')
+            {
+                Console.Write("\nConmfirmed, Thank you for your purchase!!!"); 
+                Console.Read();
+                Console.WriteLine("Late fees may apply please return vehicle before deadline to avoid incrusion up to or more than $15!!!");
+            }
+            else
+            {
+                Console.Write("\nUnderstood, Thank you for your time and we hope to see you again, have a great day!");
+                Console.ReadKey();
+                Console.WriteLine("System Shutdown Complete!");
+            }
+                Console.ReadKey();
         }
     }
 }

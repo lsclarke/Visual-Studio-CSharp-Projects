@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CarRentalManagementProject.Product;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,9 +7,9 @@ using System.Threading.Tasks;
 using static CarRentalManagementProject.Product.Car;
 using static CarRentalManagementProject.Product.Car.Interior;
 
-namespace CarRentalManagementProject.Product
+namespace CarRentalManagementProject.Car_Resource
 {
-    internal class SUV : Car, IVehicle
+    internal class Sedan : Car, IVehicle
     {
         /// <summary>
         /// SUV contructors that will create a brand new SUV object to be added to the inventory of the rental car system
@@ -19,20 +20,20 @@ namespace CarRentalManagementProject.Product
         public static int id = 0;
 
         public static int getCarID() => id;
-        public SUV() 
+        public Sedan()
         {
 
         }
 
-        public SUV(string make, string model, long year, int mpg, long millage, long vin, double price, int interiorNum, int extriorNum)
+        public Sedan(string make, string model, long year, int mpg, long millage, long vin, double price, int interiorNum, int extriorNum)
         {
-            _interiorNumSelection = interiorNum; 
+            _interiorNumSelection = interiorNum;
             _exteriorNumSelection = extriorNum;
             id++;
             var interior = accessInterior(interiorNum);
             var exterior = accessExterior(extriorNum);
 
-            Car newCar = new Car(1, interior, exterior);
+            Car newCar = new Car(2, interior, exterior);
 
             ///Below are all the vehicle identification details for the car the customer!
             Make = make;
@@ -50,41 +51,41 @@ namespace CarRentalManagementProject.Product
         public Interior accessInterior(int interiorNum)
         {
             //default initialized value
-            var carInterior = new Interior(0,0,0,false,false,false);
+            var carInterior = new Interior(0, 0, 0, false, false, false);
             //Different Interior Car features
             switch (interiorNum)
             {
                 case 0:
-                    carInterior = new Interior(8, 1, 4, true, true, true);
+                    carInterior = new Interior(4, 1, 1, true, true, true);
                     break;
                 case 1:
-                    carInterior = new Interior(6, 3, 2, false, true, true);
+                    carInterior = new Interior(5, 2, 3, false, false, true);
                     break;
                 case 2:
-                    carInterior = new Interior(8, 5, 3, true, true, false);
+                    carInterior = new Interior(4, 5, 2, true, false, false);
                     break;
             }
-                return carInterior;
+            return carInterior;
         }
 
         public Exterior accessExterior(int exteriorNum)
         {
             //default initialized value
-            var carExterior = new Exterior(0,0,0, false, false, false, false, false);
+            var carExterior = new Exterior(0, 0, 0, false, false, false, false, false);
             //Different Exterior Car features
             switch (exteriorNum)
             {
                 case 0:
-                    carExterior = new Exterior(1, 4, 95, true, false, false, true, true);
+                    carExterior = new Exterior(2, 2, 84, true, false, false, true, true);
                     break;
                 case 1:
-                    carExterior = new Exterior(2, 6, 81, false, true, false, false, true);
+                    carExterior = new Exterior(1, 6, 88, false, true, true, false, false);
                     break;
                 case 2:
-                    carExterior = new Exterior(2, 3, 76, true, false, true, true, false);
+                    carExterior = new Exterior(2, 3, 65, true, false, true, true, false);
                     break;
                 case 3:
-                    carExterior = new Exterior(3, 4, 74, true, true, true, false, true);
+                    carExterior = new Exterior(3, 4, 74, false, false, true, false, true);
                     break;
             }
             return carExterior;
@@ -93,7 +94,7 @@ namespace CarRentalManagementProject.Product
         /// <summary>
         /// Identification details from the IVehicle interface these functions will store all the important car id details on the paper work and reciept
         /// </summary>
-        public string Make { get;}
+        public string Make { get; }
 
         public int MilesPerGallon { get; }
 
@@ -142,6 +143,7 @@ namespace CarRentalManagementProject.Product
             if (exterior.hasTintedWindows())
                 Total += 20.15;
 
+            //Display fees if they are applied to this suv instances
             //if (interior.hasSeatWarmers())
             //    Console.WriteLine($"Seat Warmers:: {interior.hasSeatWarmers().ToString()} +${extraFee}");
             //if (interior.hasGPSNavigation())
@@ -173,7 +175,7 @@ namespace CarRentalManagementProject.Product
             Console.WriteLine($"----------Car No.{getId} Details----------");
             Console.WriteLine($"  **  Price per day: ${Price}  **");
             Console.WriteLine($"-----------------------------------\n");
-            Console.WriteLine($"Type:: SUV , Make:: {Make}, Model:: {Model}");
+            Console.WriteLine($"Type:: Sedan , Make:: {Make}, Model:: {Model}");
             Console.WriteLine($"Year:: {Year}, Miles Per Gallon:: {MilesPerGallon}, Millage:: {Millage}");
             Console.WriteLine($"Vehicle Identification Number:: {VehicleIdentificationNumber}\n");
 

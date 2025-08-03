@@ -14,6 +14,12 @@ namespace CarRentalManagementProject.Product
         private readonly int _id;
         public static int nextId = 0;
 
+        public enum CarType { SUV = 1, Sedan, Truck};
+        private static CarType _carType;
+        public string _carTypeText = "";
+
+        private int _carTypeNum;
+        private static CarType Get_CarType => _carType;
         /// <summary>
         /// When a car object is created the contructor will increment the _id, another contructor will be responsible for accessing all the interior and exterior data
         /// </summary>
@@ -22,9 +28,27 @@ namespace CarRentalManagementProject.Product
            
         }
 
-        public Car(Interior i, Exterior e)
+        public Car(int enumNum,Interior i, Exterior e)
         {
             _id = nextId++;
+            _carTypeNum = enumNum;
+        }
+
+        //It will select the seat color based on the number input
+        public string getCarType(string result)
+        {
+            result = "";
+            int index = 0;
+            while (index != 10)
+            {
+                index++;
+                if (_carTypeNum == index)
+                {
+                    _carType = (CarType)index;
+                    result = _carType.ToString();
+                }
+            }
+            return result;
         }
 
         /// <summary>
@@ -88,23 +112,11 @@ namespace CarRentalManagementProject.Product
                 return result;
             }
 
-            
+            public bool hasSeatWarmers() => doeshasSeatWarmers;
 
-            public bool hasSeatWarmers()
-            {
-                return doeshasSeatWarmers;
-            }
+            public bool hasGPSNavigation() => hasNav;
 
-            public bool hasGPSNavigation()
-            {
-                return hasNav;
-            }
-
-            public bool hasAuxPort()
-            {
-                return hasAux;
-            }
-
+            public bool hasAuxPort() => hasAux;
         }
 
         /// <summary>
@@ -193,28 +205,16 @@ namespace CarRentalManagementProject.Product
                 return result;
             }
 
-            public bool hasDashCamera()
-            {
-                return hasDashCam;
-            } 
+            public bool hasDashCamera() => hasDashCam;
 
-            public bool hasBumperCamera()
-            {
-                return hasBumperCam;
-            }
-            public bool hasSideWindowCamera()
-            {
-                return hasSideCam;
-            }
+            public bool hasBumperCamera() => hasBumperCam;
 
-            public bool hasSpoilerOnCar()
-            {
-                return hasSpoiler;
-            }
-            public bool hasTintedWindows()
-            {
-                return hasTinted;
-            }
+            public bool hasSideWindowCamera() => hasSideCam;
+
+            public bool hasSpoilerOnCar() => hasSpoiler;
+
+            public bool hasTintedWindows() => hasTinted;
+
         }
     }
 }

@@ -11,6 +11,7 @@ namespace CarRentalManagementProject.Product
     {
         //Methods to sucessfully create a vehicle in the system for renters to choose from
 
+        public int UpdateId(int num);
         int getId { get; }
         string Make { get; }
 
@@ -25,5 +26,7 @@ namespace CarRentalManagementProject.Product
         long VehicleIdentificationNumber { get; }
 
         double Price { get; }
+
+        void Display();
     }
 }

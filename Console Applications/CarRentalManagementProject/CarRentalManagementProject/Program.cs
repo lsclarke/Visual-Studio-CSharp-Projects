@@ -77,7 +77,5 @@ namespace CarRentalManagementProject
             }
                 Console.ReadKey();
         }
-
-        public string s { get; private set; }
     }
 }
